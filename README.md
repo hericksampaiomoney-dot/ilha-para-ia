@@ -1,94 +1,90 @@
-# 🏝️ Ilha Virtual de IA
+# 🏝️ IlhaIA - Aplicação Desktop
 
-> Um projeto de ilha virtual em 3D onde um agente de Inteligência Artificial explora o ambiente autonomamente, interage com a fauna e objetos, coleta recursos, fabrica itens e conversa em tempo real com o jogador.
+**IlhaIA** é uma aplicação desktop desenvolvida para oferecer uma experiência interativa e integrada com inteligência artificial, contando com uma interface de usuário moderna e um sistema de configuração centralizado.
 
-## ✨ Recursos
+---
 
-* **🌐 Mundo 3D Interativo:** Ilha com praia, bosque, montanha, animais e ciclo dinâmico de dia e noite.
+## 🛠️ Requisitos e Dependências
 
-* **🤖 IA Autônoma:** Tomada de decisão livre para explorar o ambiente e escolher ações.
+Para que a aplicação funcione corretamente, certifique-se de atender aos seguintes requisitos:
 
-* **🎒 Sistema de Crafting:** Gerenciamento de mochila, coleta de itens, receitas e criação de objetos.
+1. **Ollama (Obrigatório):**
+   * O **IlhaIA** depende do [Ollama](https://ollama.com/) rodando localmente para gerenciar e executar os modelos de linguagem.
+   * Certifique-se de ter o Ollama instalado e o serviço ativo na sua máquina (geralmente rodando em segundo plano na porta padrão `http://localhost:11434`).
 
-* **💬 Interação Social:** Conversação em linguagem natural com a IA e atribuição de tarefas.
+2. **Modelo Utilizado:**
+   * O projeto está configurado para utilizar o modelo **`llama3`** (ou o modelo especificado no arquivo de configuração).
+   * Certifique-se de baixar o modelo previamente no seu Ollama executando o comando no terminal:
+     ```bash
+     ollama pull llama3
+     ```
 
-* **🗺️ Exploração Guiada:** Inventário de recursos da ilha e rotas até pontos de interesse (como o topo da montanha).
-
-* **⏱️ Controle do Ambiente:** Painel para ajustar o tempo/clima e interagir diretamente com o mundo.
-
-## 🛠️ Requisitos Previos
-
-Certifique-se de ter os seguintes softwares instalados antes de iniciar:
-
-* **Python:** `3.10` ou superior.
-
-* **Ollama:** Instalado e rodando em segundo plano ([Download Ollama](https://ollama.com/)).
-
-* **Modelo LLM:** Modelo `llama3.2` baixado no Ollama.
-
-## 🚀 Como Executar
-
-1. **Baixe o modelo de IA padrão:**
-
-   ```
-   ollama pull llama3.2
-   
-   ```
-
-2. **Inicie o servidor:**
-
-   ```
-   python servidor.py
-   
-   ```
-
-3. **Acesse a aplicação:**
-   Abra o seu navegador e acesse: <http://127.0.0.1:5000>
-
-## ⚙️ Configuração
-
-As configurações padrão ficam armazenadas no arquivo `config.json`:
-
-```
-{
-  "provedor": "ollama",
-  "modelo_ollama": "llama3.2",
-  "porta": 5000
-}
-
-```
-
-> 💡 **Variáveis de Ambiente:** É possível sobrescrever as configurações definindo variáveis no sistema. Exemplo: use `PORTA` para alterar a porta HTTP ou `MODELO_OLLAMA` para trocar o modelo de linguagem utilizado.
-
-## 📦 Gerar Executável (.exe para Windows)
-
-Para compilar o projeto em um executável autônomo:
-
-```
-build.bat
-
-```
-
-*O script instalará os pacotes necessários e gerará o arquivo em `dist/IlhaIA.exe`.*
+---
 
 ## 📁 Estrutura do Projeto
 
-```
-├── servidor.py          # Servidor Flask, lógica de decisões da IA e chat
-├── static/
-│   ├── index.html       # Interface principal, renderização 3D e lógica do jogo
-│   └── three.min.js     # Biblioteca Three.js para gráficos 3D
-├── config.json          # Configurações de provedor, modelo e porta
-├── requirements.txt     # Dependências Python do projeto
-└── build.bat            # Script de automação do build no Windows
+A estrutura de arquivos do projeto é organizada da seguinte forma:
 
+```text
+IlhaIA-v1.0/
+├── IlhaIA.exe       # Executável principal da aplicação
+├── config.json      # Arquivo de configurações do sistema (inclui parâmetros do modelo)
+└── ux/              # Recursos e componentes da interface do usuário (UI/UX)
 ```
 
-## 🔌 Rotas da API
+---
 
-| Método | Rota | Descrição | 
-| ----- | ----- | ----- | 
-| `GET` | `/` | Carrega a interface do jogo. | 
-| `GET` | `/status` | Retorna o provedor e modelo atualmente configurados. | 
-| `POST` | `/decisao` | Envia o estado atual da ilha e recebe a próxima ação da IA. | 
-| `POST` | `/conversar` | Processa e responde mensagens enviadas pelo jogador. | 
+## 🚀 Como Executar
+
+1. **Verifique o Ollama:** Inicie o aplicativo Ollama no seu sistema para garantir que a API esteja acessível.
+2. **Download / Extração:** Certifique-se de que todos os arquivos (`IlhaIA.exe`, `config.json` e a pasta `ux/`) estejam no mesmo diretório.
+3. **Iniciando o Programa:** Dê um duplo clique no arquivo `IlhaIA.exe` para iniciar a aplicação.
+
+---
+
+## ⚙️ Configuração (`config.json`)
+
+O arquivo `config.json` permite personalizar parâmetros do aplicativo, como o modelo de IA utilizado e o endereço do servidor Ollama. 
+
+Exemplo de estrutura de configuração:
+
+```json
+{
+  "app_name": "IlhaIA",
+  "version": "1.0",
+  "theme": "dark",
+  "ai_settings": {
+    "model": "llama3",
+    "ollama_url": "http://localhost:11434"
+  },
+  "settings": {
+    "auto_update": true,
+    "log_level": "info"
+  }
+}
+```
+
+> **Nota:** Certifique-se de manter a sintaxe JSON válida ao editar este arquivo.
+
+---
+
+## 🎨 Interface e Recursos (`ux/`)
+
+A pasta `ux/` contém os arquivos essenciais para a renderização da interface do usuário, incluindo:
+* Arquivos de estilo e temas.
+* Elementos gráficos e ícones.
+* Scripts de componentes de interface.
+
+---
+
+## 💻 Requisitos de Sistema
+
+* **Sistema Operacional:** Windows 10/11 (64-bit)
+* **Hardware:** Processador compatível e memória RAM adequada para rodar o modelo localmente (recomendado 8GB+ RAM).
+* **Permissões:** Permissão de leitura/escrita no diretório onde o arquivo `config.json` está localizado.
+
+---
+
+## 📄 Licença
+
+Este projeto é disponibilizado sob os termos da licença padrão do projeto. Consulte os detalhes no repositório oficial ou entre em contato com os desenvolvedores.
