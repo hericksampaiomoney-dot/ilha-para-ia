@@ -88,3 +88,19 @@ A pasta `ux/` contém os arquivos essenciais para a renderização da interface 
 ## 📄 Licença
 
 Este projeto é disponibilizado sob os termos da licença padrão do projeto. Consulte os detalhes no repositório oficial ou entre em contato com os desenvolvedores.
+
+## 🔒 Privacidade
+
+**Onde ficam seus dados:** o IlhaIA roda localmente no seu computador.
+As conversas são processadas pelo Ollama em `localhost:11434` e não são
+enviadas a servidores do desenvolvedor nem de terceiros.
+
+**O que é gravado em disco:** com `"log_level": "info"` no `config.json`,
+o aplicativo pode registrar eventos de uso em arquivos locais. Para não
+guardar nada, ajuste o nível de log para o mínimo.
+
+**Atualizações:** com `"auto_update": true`, o app consulta a rede para
+buscar novas versões. Para desativar, mude para `false`.
+
+**Seus direitos:** como os dados ficam só na sua máquina, você tem
+controle total e pode apagar os arquivos de log quando quiser.
